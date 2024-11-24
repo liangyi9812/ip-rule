@@ -1,0 +1,47 @@
+name: Update IP List
+
+on:
+    workflow_dispatch:
+    schedule:
+      - cron: "00 23 * * *" # 7:00 AM UTC+8
+    push:
+      branches:
+        - main
+      paths-ignore:
+        - "**/README.md"
+
+jobs:
+  update-ip:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set variables
+      shell: bash
+      run: |
+        echo "BUILDTIME=$(TZ=Asia/Shanghai date +'%Y-%m-%d %H:%M')" >> $GITHUB_ENV
+
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: pip install requests
+
+    - name: Run Python script
+      run: python split_ip.py
+
+    - name: Commit and push changes
+      run: |
+        cd release || exit 1
+        git init
+        git config --local user.name "github-actions[bot]"
+        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git checkout -b release
+        git add .
+        git commit -m "Released on ${{ env.BUILDTIME }}"
+        git remote add origin "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+        git push -f -u origin release
