@@ -1,4 +1,5 @@
 import requests
+import os
 
 # 文件 URL
 url = "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/cn.list"
@@ -28,6 +29,7 @@ for line in data.splitlines():
         ipv4_list.append(line)
 
 # 保存到文件
+os.makedirs("release", exist_ok=True)
 with open("release/IPV4.txt", "w") as ipv4_file:
     ipv4_file.write("\n".join(ipv4_list))
 
