@@ -1,6 +1,6 @@
 ## **文件**：
 
-每天 7:00 AM UTC+8 同步自 [MetaCubeX/meta-rules-dat](https://github.com/MetaCubeX/meta-rules-dat/blob/meta/geo/geoip/cn.list)
+每天 7:00 AM UTC+8 同步自 [Loyalsoldier/geoip](https://github.com/Loyalsoldier/geoip/raw/refs/heads/release/text/cn.txt)
 
 | 文件名                                                                      | 下载地址                                                                                    |
 |--------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|

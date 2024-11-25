@@ -2,7 +2,7 @@ import requests
 import os
 
 # 文件 URL
-url = "https://github.com/MetaCubeX/meta-rules-dat/raw/refs/heads/meta/geo/geoip/cn.list"
+url = "https://github.com/Loyalsoldier/geoip/raw/refs/heads/release/text/cn.txt"
 
 # 下载文件内容
 response = requests.get(url)
